@@ -4,7 +4,7 @@ restrictive assignment approach to prevent misleading behavior, meaning that eac
 be linked to one of its nodegraphs (pane) with a specific context.
 
 
-#Install: 
+# Install: 
 1. Download the folder nodegraphdesk and place it in a desired location. 
 2. The folder contains a json file with the same name as the folder. Open it and set the property: 
 "NODEGRAPHDESK" with the current directory where you have opened the file and save it. 
@@ -18,7 +18,7 @@ select 'Edit Tool'. Go to Hotkeys and set a hotkey for Network Pane.
 6. While under a nodegraph, you can now use this hotkey to map it with its context to the current 
 desktop. For more details, see docstring of assignContext().
 
-#Config File ('nodegraphdesk_config.json'):
+# Config File ('nodegraphdesk_config.json'):
 init_desktops_startup: if true all desktops are initialized at startup, which causes the annoying 
 quick popups. This cannot be avoid, but can at least be done once at startup.
 subnetwork_mapping: if true subnets are also adopted for assigned desktops.
