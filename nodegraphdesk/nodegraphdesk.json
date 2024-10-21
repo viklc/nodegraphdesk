@@ -1,0 +1,14 @@
+{
+    "path": "$NODEGRAPHDESK",
+    "load_package_once": true,
+    "version": "20.5",
+    "enable": true,
+    
+    "env":
+    [
+        {
+            "NODEGRAPHDESK": "D:/Tools/Houdini/plugins/nodegraphdesk"
+        }
+    ]
+}
+

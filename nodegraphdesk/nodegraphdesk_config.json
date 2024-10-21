@@ -1,0 +1,17 @@
+{
+    "init_desktops_startup": true,
+    "subnetwork_mapping": true,
+    "subnetwork_context_map": {
+        "ch": "chopnet",
+        "img": "copnet",
+        "mat": "matnet",
+        "obj": "objnet",
+        "out": "ropnet",
+        "shop": "shopnet",
+        "stage": "lopnet",
+        "tasks": "topnet"
+    },
+    "nodegraphdesk_map": {
+  
+    }
+}
