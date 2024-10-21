@@ -2,7 +2,8 @@
 """ ------------------------------------------------------------------------------------------------
 This nodegraph extension allows to assign a nodegraph context to a specific desktop. It uses a 
 restrictive assignment approach to prevent misleading behavior, meaning that each desktop can only 
-be linked to one of its nodegraphs (pane) with a specific context.
+be linked to one of its nodegraphs (pane) with a specific context. To take effect, at least two links 
+should be specified.
 
 Credits to ajz3d and TristanG, see: https://www.sidefx.com/forum/topic/97428/
 ------------------------------------------------------------------------------------------------ """
@@ -12,6 +13,7 @@ import nodegraphview as view
 
 NODEGRAPHDESK: str = hou.getenv('NODEGRAPHDESK')
 config_path: str = NODEGRAPHDESK + '/nodegraphdesk_config.json'
+
 
 def getConfig() -> dict:
     """ ------------------------------------------------------------------------------------------------
