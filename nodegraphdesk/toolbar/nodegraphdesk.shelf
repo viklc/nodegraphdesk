@@ -7,11 +7,17 @@
 
   <toolshelf name="nodegraphdesk" label="Nodegraphdesk">
     <memberTool name="assign_context"/>
+    <memberTool name="clear_mapping"/>
   </toolshelf>
 
   <tool name="assign_context" label="Assign Context" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[from nodegraphdesk import assignContext
 assignContext()
 ]]></script>
+  </tool>
+
+  <tool name="clear_mapping" label="Clear Mapping" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[from nodegraphdesk import clearMapping
+clearMapping()]]></script>
   </tool>
 </shelfDocument>
