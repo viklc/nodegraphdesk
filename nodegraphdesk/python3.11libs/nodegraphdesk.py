@@ -63,8 +63,7 @@ def isVailedContext(nodegraphdesk_map: dict, context: str) -> str:
 
 def getContextIcon(context: str) -> str:
     """ ------------------------------------------------------------------------------------------------
-    Verifies whether the given context is vailed, if so a empty string is returned, otherwise the name 
-    of the desktop to which it is already mapped.
+    Returns the icon path that is mapped to context.
     ------------------------------------------------------------------------------------------------ """
     context_icon_map: dict = {"ch"   : "chop",
                               "img"  : "cop2",
