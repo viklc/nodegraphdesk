@@ -173,12 +173,10 @@ def _handleEventCoroutine():
     ------------------------------------------------------------------------------------------------ """
     coroutine = handleEventCoroutine()
     next(coroutine)
-
     uievent = yield
-    editor = uievent.editor
     keep_state = True
 
-    while keep_state and editor.isUnderCursor():
+    while keep_state:
         uievent = yield
         if isinstance(uievent, ContextEvent):
             # event_handler = None
