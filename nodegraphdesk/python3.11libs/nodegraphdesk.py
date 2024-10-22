@@ -92,30 +92,24 @@ def assignContext() -> None:
                 network_context: str = pane_tab.pwd().path().split('/')[1]
                 current_desktop: str = hou.ui.curDesktop().name()
                 is_vailed_context: str = isVailedContext(nodegraphdesk_map, network_context)
-                def _setConfig():
-                    config['nodegraphdesk_map'] = nodegraphdesk_map
-                    setConfig(config)
+                msg: str = ''
                 if is_vailed_context:
                     msg: str = f'Context {network_context} already assigned to the desktop {is_vailed_context}.'
                     state: int = hou.ui.displayMessage(msg, buttons=('Reassign', 'Remove', 'Cancel', ))
                     if state == 0: # Reassign
                         nodegraphdesk_map.pop(is_vailed_context)
                         nodegraphdesk_map[current_desktop] = (pane_name, network_context)
-                        _setConfig()
                         msg: str = f'Context {network_context} reassigned to the desktop {current_desktop}.'
-                        pane_tab.flashMessage(getContextIcon(network_context), msg, 3)
                     elif state == 1: # Remove
                         nodegraphdesk_map.pop(is_vailed_context)
-                        _setConfig()
                         msg: str = f'Context {network_context} removed from desktop {is_vailed_context}.'
-                        pane_tab.flashMessage(getContextIcon(network_context), msg, 3)
-                    else: # Cancle
-                        break
+                    else: break # Cancle
                 else: # Assign
                     nodegraphdesk_map[current_desktop] = (pane_name, network_context)
-                    _setConfig()
                     msg: str = f'Context {network_context} assigned to the desktop {current_desktop}.'
-                    pane_tab.flashMessage(getContextIcon(network_context), msg, 3)
+                config['nodegraphdesk_map'] = nodegraphdesk_map
+                setConfig(config)
+                pane_tab.flashMessage(getContextIcon(network_context), msg, 3)
                 break
 
 
