@@ -61,6 +61,22 @@ def isVailedContext(nodegraphdesk_map: dict, context: str) -> str:
     return ''
 
 
+def getContextIcon(context: str) -> str:
+    """ ------------------------------------------------------------------------------------------------
+    Verifies whether the given context is vailed, if so a empty string is returned, otherwise the name 
+    of the desktop to which it is already mapped.
+    ------------------------------------------------------------------------------------------------ """
+    context_icon_map: dict = {"ch"   : "chop",
+                              "img"  : "cop2",
+                              "mat"  : "mat",
+                              "obj"  : "scene",
+                              "out"  : "rop",
+                              "shop" : "shop",
+                              "stage": "lop",
+                              "tasks": "top"}
+    return 'hicon:/SVGIcons.index?NETWORKS_' + context_icon_map[context] + '.svg'
+
+
 def assignContext() -> None:
     """ ------------------------------------------------------------------------------------------------
     Assigns a nodegraph context to the desktop and stores it in the config file. It also checks if an 
@@ -83,18 +99,24 @@ def assignContext() -> None:
                 if is_vailed_context:
                     msg: str = f'Context {network_context} already assigned to the desktop {is_vailed_context}.'
                     state: int = hou.ui.displayMessage(msg, buttons=('Reassign', 'Remove', 'Cancel', ))
-                    if state == 0: 
+                    if state == 0: # Reassign
                         nodegraphdesk_map.pop(is_vailed_context)
                         nodegraphdesk_map[current_desktop] = (pane_name, network_context)
                         _setConfig()
-                    elif state == 1:
+                        msg: str = f'Context {network_context} reassigned to the desktop {current_desktop}.'
+                        pane_tab.flashMessage(getContextIcon(network_context), msg, 3)
+                    elif state == 1: # Remove
                         nodegraphdesk_map.pop(is_vailed_context)
                         _setConfig()
-                    else:
+                        msg: str = f'Context {network_context} removed from desktop {is_vailed_context}.'
+                        pane_tab.flashMessage(getContextIcon(network_context), msg, 3)
+                    else: # Cancle
                         break
-                else:
+                else: # Assign
                     nodegraphdesk_map[current_desktop] = (pane_name, network_context)
                     _setConfig()
+                    msg: str = f'Context {network_context} assigned to the desktop {current_desktop}.'
+                    pane_tab.flashMessage(getContextIcon(network_context), msg, 3)
                 break
 
 
