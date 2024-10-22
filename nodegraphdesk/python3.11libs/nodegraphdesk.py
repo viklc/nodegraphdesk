@@ -119,6 +119,15 @@ def assignContext() -> None:
                 break
 
 
+def clearMapping() -> None:
+    """ ------------------------------------------------------------------------------------------------
+    Clears the entries in configs nodegraphdesk_map dictionary.
+    ------------------------------------------------------------------------------------------------ """
+    config = getConfig()
+    config['nodegraphdesk_map'] = {}
+    setConfig(config)
+
+
 def resetPath(pane_name: str, path: str) -> None:
     """ ------------------------------------------------------------------------------------------------
     Resets the nodegraph path based on the mapping from config file. This is necessary to update the 
