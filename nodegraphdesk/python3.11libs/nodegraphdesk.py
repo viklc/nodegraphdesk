@@ -155,14 +155,12 @@ def nodegraphdesk(uievent) -> None:
         if not config['arbitrary_nodegraph_change']:
             nodegraph_change_state = nodegraphdesk_map[desktop][0] == editor.name()
         if desktop == current_desktop.name() and nodegraph_change_state:
-            oldpath = uievent.oldcontext
-            newpath = uievent.context
-            if oldpath != newpath:
+            if uievent.oldcontext != uievent.context:
                 for _desktop in nodegraphdesk_map.keys():
                     if nodegraphdesk_map[_desktop][1] in node_type:
                         desktops_dict = getDesktopDict()
                         desktops_dict[_desktop].setAsCurrent()
-                        setPath(nodegraphdesk_map[_desktop][0], newpath)
+                        setPath(nodegraphdesk_map[_desktop][0], uievent.context)
             break
 
 
