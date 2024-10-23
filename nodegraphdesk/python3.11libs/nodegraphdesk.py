@@ -150,9 +150,11 @@ def nodegraphdesk(uievent) -> None:
     nodegraphdesk_map: dict = config['nodegraphdesk_map']
     if config['alias_mapping']:
         node_type = aliasMapping(node_type, config['alias_map'])
-                    
+    nodegraph_change_state: bool = True
     for desktop in nodegraphdesk_map.keys():
-        if desktop == current_desktop.name() and nodegraphdesk_map[desktop][0] == editor.name():
+        if not config['arbitrary_nodegraph_change']:
+            nodegraph_change_state = nodegraphdesk_map[desktop][0] == editor.name()
+        if desktop == current_desktop.name() and nodegraph_change_state:
             oldpath = uievent.oldcontext
             newpath = uievent.context
             if oldpath != newpath:
