@@ -1,17 +1,16 @@
 {
     "init_desktops_startup": true,
-    "subnetwork_mapping": true,
-    "subnetwork_context_map": {
-        "ch": "chopnet",
-        "img": "copnet",
-        "mat": "matnet",
-        "obj": "objnet",
-        "out": "ropnet",
-        "shop": "shopnet",
-        "stage": "lopnet",
-        "tasks": "topnet"
+    "alias_mapping": true,
+    "alias_map": {
+        "chopnet": "ch",
+        "copnet": "img",
+        "cop2net": "img",
+        "matnet": "mat",
+        "objnet": "obj",
+        "ropnet": "out",
+        "shopnet": "shop",
+        "lopnet": "stage",
+        "topnet": "tasks"
     },
-    "nodegraphdesk_map": {
-  
-    }
+    "nodegraphdesk_map": {}
 }
