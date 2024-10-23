@@ -55,6 +55,18 @@ def selectDesktopDialog(current_desktop: str = None) -> str:
     return ''
 
 
+def aliasMapping(node_type: list, alias_map: dict) -> list:
+    """ ------------------------------------------------------------------------------------------------
+    Returns a node_type list with aliases if some are available.
+    ------------------------------------------------------------------------------------------------ """
+    if node_type[0] in alias_map.keys():
+        node_type.append(alias_map[node_type[0]])
+    elif node_type[0] in alias_map.values():
+        for k, v in alias_map.items():
+            if v == node_type[0]: node_type.append(k)
+    return node_type
+
+
 def assignContext() -> None:
     """ ------------------------------------------------------------------------------------------------
     Assigns a nodegraph context (node type) to the desktop and stores it in the config file. It also 
@@ -127,18 +139,6 @@ def setPath(pane_name: str, path: str) -> None:
     for pane in hou.ui.paneTabs():
         if pane.name() == pane_name:
             pane.cd(path)
-
-
-def aliasMapping(node_type: list, alias_map: dict) -> list:
-    """ ------------------------------------------------------------------------------------------------
-    Returns a node_type list with aliases if some are available.
-    ------------------------------------------------------------------------------------------------ """
-    if node_type[0] in alias_map.keys():
-        node_type.append(alias_map[node_type[0]])
-    elif node_type[0] in alias_map.values():
-        for k, v in alias_map.items():
-            if v == node_type[0]: node_type.append(k)
-    return node_type
 
 
 def nodegraphdesk(uievent) -> None:
