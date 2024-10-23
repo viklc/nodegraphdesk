@@ -1,5 +1,6 @@
 {
     "init_desktops_startup": true,
+    "arbitrary_nodegraph_change": true,
     "alias_mapping": true,
     "alias_map": {
         "chopnet": "ch",
