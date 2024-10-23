@@ -132,9 +132,7 @@ def clearMapping() -> None:
 
 def setPath(pane_name: str, path: str) -> None:
     """ ------------------------------------------------------------------------------------------------
-    Resets the nodegraph path based on the mapping from config file. This is necessary to update the 
-    path after changing context, as the nodegraph path may no longer align with the mapping otherwise. 
-    It is also maintain the subdirectories when switching from subnetworks.
+    Sets nodegraph path.
     ------------------------------------------------------------------------------------------------ """
     for pane in hou.ui.paneTabs():
         if pane.name() == pane_name:
