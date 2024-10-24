@@ -3,7 +3,7 @@ Nodegraphdesk is an extension for Houdini's node editor that allows to assign a 
 to a nodegraph context. It automatically switches between desktops when the user changes the path 
 or dives into contexts such as DOPs or LOPs.
 
-## Install: 
+## Install
 1. Download the `nodegraphdesk` folder and place it in your desired location.
 2. Inside the folder, you’ll find a JSON file named `nodegraphdesk.json`. Open this file and set
 the property `"NODEGRAPHDESK"` to reflect the current directory where the file is located, then save
@@ -36,4 +36,4 @@ long as they are vailed node types.
 - **alias_map:** Alias dictionary map.
 - **nodegraphdesk_map:** The actual nodegraph context desktop map.
 ---
-**Credits to ajz3d and TristanG, see** [**Is it possible to auto change Desktops depending on context?**](https://www.sidefx.com/forum/topic/97428/) 
+Credits to ajz3d and TristanG, see [Is it possible to auto change Desktops depending on context?](https://www.sidefx.com/forum/topic/97428/) 
