@@ -55,16 +55,14 @@ def selectDesktopDialog(current_desktop: str = None) -> str:
     return ''
 
 
-def aliasMapping(node_type: list, alias_map: dict) -> list:
+def aliasMapping(context: list, alias_map: dict) -> list:
     """ ------------------------------------------------------------------------------------------------
-    Returns a node_type list with aliases if some are available.
+    Returns a context list with aliases if some are available.
     ------------------------------------------------------------------------------------------------ """
-    if node_type[0] in alias_map.keys():
-        node_type.append(alias_map[node_type[0]])
-    elif node_type[0] in alias_map.values():
-        for k, v in alias_map.items():
-            if v == node_type[0]: node_type.append(k)
-    return node_type
+    for node_type, alias in alias_map.items():
+        if node_type == context[0]: context.append(alias)
+        elif alias == context[0]: context.append(node_type)
+    return context
 
 
 def assignContext() -> None:
@@ -76,48 +74,47 @@ def assignContext() -> None:
     nodegraphdesk_map: dict = config['nodegraphdesk_map']
 
     for pane_tab in hou.ui.paneTabs():
-        if pane_tab.isCurrentTab() and pane_tab.type() == hou.paneTabType.NetworkEditor:
-            if pane_tab.isUnderCursor():
-                pane_name: str = pane_tab.name()
-                node: hou.Node = pane_tab.pwd()
-                node_type: str = [pane_tab.pwd().type().name()]
-                if config['alias_mapping']:
-                    node_type = aliasMapping(node_type, config['alias_map'])
-                current_desktop: str = hou.ui.curDesktop().name()
-                msg: str = ''
-                node_type_icon: str = 'hicon:/SVGIcons.index?' + node.type().icon() + '.svg'
-                if current_desktop not in nodegraphdesk_map.keys(): # Assign
-                    nodegraphdesk_map[current_desktop] = (pane_name, node_type[0])
-                    msg: str = f'Context {node_type} assigned to desktop {current_desktop}.'
-                else:
-                    if nodegraphdesk_map[current_desktop][1] in node_type:
-                        msg: str = f'Context {node_type} already assigned to desktop {current_desktop}.'
-                        if not hou.ui.displayMessage(msg, buttons=('Remove', 'Cancel', )):
-                            msg: str = f'Context {node_type} removed from desktop {current_desktop}.'
-                            node_type_icon: str = 'hicon:/SVGIcons.index?COMMON_delete.svg'
-                            nodegraphdesk_map.pop(current_desktop)
-                        else: # Cancel
-                            msg: str = 'Canceled'
-                            node_type_icon: str = 'hicon:/SVGIcons.index?COP2_delete.svg'
-                    else:
-                        msg: str = f'Context {nodegraphdesk_map[current_desktop][1]} is assigned with desktop {current_desktop}.\n Do you wish to reassign with {node_type}?'
-                        state: int = hou.ui.displayMessage(msg, buttons=('Reassign', 'Remove', 'Cancel', ))
-                        if state == 0: # Reassign
-                            msg: str = f'Context {node_type} reassigned to the desktop {current_desktop}.'
-                            nodegraphdesk_map.pop(current_desktop)
-                            nodegraphdesk_map[current_desktop] = (pane_name, node_type[0])
-                        elif state == 1: # Remove
-                            msg: str = f'Context {nodegraphdesk_map[current_desktop][1]} removed from desktop {current_desktop}.'
-                            node_type_icon: str = 'hicon:/SVGIcons.index?COMMON_delete.svg'
-                            nodegraphdesk_map.pop(current_desktop)
-                        else: # Cancel
-                            msg: str = 'Canceled'
-                            node_type_icon: str = 'hicon:/SVGIcons.index?COP2_delete.svg'
+        if pane_tab.type() == hou.paneTabType.NetworkEditor and pane_tab.isUnderCursor():
+            pane_name: str = pane_tab.name()
+            node: hou.Node = pane_tab.pwd()
+            context: list = [pane_tab.pwd().type().name()]
+            if config['alias_mapping']: context = aliasMapping(context, config['alias_map'])
+            current_desktop: str = hou.ui.curDesktop().name()
+            msg: str = ''
+            context_icon: str = 'hicon:/SVGIcons.index?' + node.type().icon() + '.svg'
 
-                config['nodegraphdesk_map'] = nodegraphdesk_map
-                setConfig(config)
-                pane_tab.flashMessage(node_type_icon, msg, 3)
-                break
+            if current_desktop not in nodegraphdesk_map.keys(): # Assign
+                nodegraphdesk_map[current_desktop] = (pane_name, context[0])
+                msg = f'Context {context} assigned to desktop {current_desktop}.'
+            else:
+                if nodegraphdesk_map[current_desktop][1] in context:
+                    msg = f'Context {context} already assigned to desktop {current_desktop}.'
+                    if not hou.ui.displayMessage(msg, buttons=('Remove', 'Cancel', )): # Remove
+                        msg = f'Context {context} removed from desktop {current_desktop}.'
+                        context_icon = 'hicon:/SVGIcons.index?COMMON_delete.svg'
+                        nodegraphdesk_map.pop(current_desktop)
+                    else: # Cancel
+                        msg = 'Canceled'
+                        context_icon = 'hicon:/SVGIcons.index?COP2_delete.svg'
+                else:
+                    msg = f'Context {nodegraphdesk_map[current_desktop][1]} is assigned with desktop {current_desktop}.\n Do you wish to reassign with {context}?'
+                    state: int = hou.ui.displayMessage(msg, buttons=('Reassign', 'Remove', 'Cancel', ))
+                    if state == 0: # Reassign
+                        msg = f'Context {context} reassigned to the desktop {current_desktop}.'
+                        nodegraphdesk_map.pop(current_desktop)
+                        nodegraphdesk_map[current_desktop] = (pane_name, context[0])
+                    elif state == 1: # Remove
+                        msg = f'Context {nodegraphdesk_map[current_desktop][1]} removed from desktop {current_desktop}.'
+                        context_icon = 'hicon:/SVGIcons.index?COMMON_delete.svg'
+                        nodegraphdesk_map.pop(current_desktop)
+                    else: # Cancel
+                        msg  = 'Canceled'
+                        context_icon = 'hicon:/SVGIcons.index?COP2_delete.svg'
+
+            config['nodegraphdesk_map'] = nodegraphdesk_map
+            setConfig(config)
+            pane_tab.flashMessage(context_icon, msg, 3)
+            break
 
 
 def clearMapping() -> None:
@@ -130,38 +127,28 @@ def clearMapping() -> None:
         setConfig(config)
 
 
-def setPath(pane_name: str, path: str) -> None:
-    """ ------------------------------------------------------------------------------------------------
-    Sets nodegraph path.
-    ------------------------------------------------------------------------------------------------ """
-    for pane in hou.ui.paneTabs():
-        if pane.name() == pane_name:
-            pane.cd(path)
-
-
-def nodegraphdesk(uievent) -> None:
+def desktopChange(uievent) -> None:
     """ ------------------------------------------------------------------------------------------------
     Updates the desktop based on the assignment specified in the config file.
     ------------------------------------------------------------------------------------------------ """
-    editor = uievent.editor
-    node_type: list = [editor.pwd().type().name()]
-    current_desktop = hou.ui.curDesktop()
+    editor: hou.NetworkEditor = uievent.editor
+    context: list = [editor.pwd().type().name()]
+    current_desktop: hou.Desktop = hou.ui.curDesktop()
     config: dict = getConfig()
     nodegraphdesk_map: dict = config['nodegraphdesk_map']
-    if config['alias_mapping']:
-        node_type = aliasMapping(node_type, config['alias_map'])
-    nodegraph_change_state: bool = True
-    for desktop in nodegraphdesk_map.keys():
-        if not config['arbitrary_nodegraph_change']:
-            nodegraph_change_state = nodegraphdesk_map[desktop][0] == editor.name()
-        if desktop == current_desktop.name() and nodegraph_change_state:
-            if uievent.oldcontext != uievent.context:
-                for _desktop in nodegraphdesk_map.keys():
-                    if nodegraphdesk_map[_desktop][1] in node_type:
+    if config['alias_mapping']: context = aliasMapping(context, config['alias_map'])
+
+    if (hou.ui.paneTabUnderCursor() == editor # Verifies if change can be made
+        and uievent.oldcontext != uievent.context 
+        and current_desktop.name() in nodegraphdesk_map.keys()): 
+            if (nodegraphdesk_map[current_desktop.name()][0] == editor.name()
+                or config['arbitrary_nodegraph_change']):
+                for desktop in nodegraphdesk_map.keys():
+                    if nodegraphdesk_map[desktop][1] in context:
                         desktops_dict = getDesktopDict()
-                        desktops_dict[_desktop].setAsCurrent()
-                        setPath(nodegraphdesk_map[_desktop][0], uievent.context)
-            break
+                        desktops_dict[desktop].setAsCurrent()
+                        hou.ui.findPaneTab(nodegraphdesk_map[desktop][0]).cd(uievent.context) # Set path
+                        break
 
 
 def handleEventCoroutine():
@@ -171,7 +158,6 @@ def handleEventCoroutine():
     ------------------------------------------------------------------------------------------------ """
     import nodegraph
     from canvaseventtypes import ContextEvent
-    # import nodegraphview as view
 
     def _handleEventCoroutine(handleEventCoroutine = nodegraph.handleEventCoroutine): 
         coroutine = handleEventCoroutine()
@@ -181,10 +167,8 @@ def handleEventCoroutine():
         while keep_state:
             uievent = yield
             if isinstance(uievent, ContextEvent):
-                nodegraphdesk(uievent)
-                # event_handler = None
-                # keep_state = False
-
+                desktopChange(uievent)
+                keep_state = False
             try: coroutine.send(uievent)
             except StopIteration: break
 
