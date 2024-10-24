@@ -3,7 +3,7 @@ Nodegraphdesk is an extension for Houdini's node editor that allows to assign a 
 to a nodegraph context. It automatically switches between desktops when the user changes the path 
 or dives into contexts such as DOPs or LOPs.
 
-## Install Package: 
+## Install: 
 1. Download the `nodegraphdesk` folder and place it in your desired location.
 2. Inside the folder, you’ll find a JSON file named `nodegraphdesk.json`. Open this file and set
 the property `"NODEGRAPHDESK"` to reflect the current directory where the file is located, then save
