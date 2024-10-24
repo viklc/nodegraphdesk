@@ -16,13 +16,17 @@ Windows: `C:\Users\<username>\Documents\houdini20.5\packages`
 5. Restart Houdini.
 
 ## Usage
-To assign a nodegraph context to the desktop, you must first set a shortkey for the 'Assign 
-Context' shelf tool. Press the plus button on the right-hand side of the shelftool bar and select the 
-'Nodegrapthdesk' entry under Shelves. Select the tab and right-click on 'Assign Context' tool, 
-select 'Edit Tool'. Go to Hotkeys and set a hotkey for Network Pane.
-
-While under a nodegraph, you can now use this hotkey to map it with its context to the current 
-desktop. For more details, see docstring of assignContext().
+- To assign a node editor context to a desktop, press `M` while under nodegraph.
+- To remove the assignment, simply press `M` again.
+- You can change the hotkey by editing the `"assign_hotkey"` property in the
+`$NODEGRAPHDESK/nodegraphdesk_config.json` file. For example, you can set it to `"Ctrl+Shift+M"`.
+- Alternatively you can use the `Assign Context` shelf tool, but you’ll need to set a hotkey for it 
+first. Click the plus button on the right side of the shelf tool bar and select `Nodegrapthdesk` 
+under Shelves. Then find the `Assign Context` tool, right-click on it, and choose 'Edit Tool'. 
+Navigate to Hotkeys and set a hotkey for the Network Pane. This will allow you to use it within the 
+nodegraph as well.
+- When switching desktop for an another assignment, ensure that the nodegraph context you want to bind 
+is not already assigned. If it is, you will be forced to reassign or remove the existing assignment.
 
 ## Config File ('nodegraphdesk_config.json'):
 init_desktops_startup: if true all desktops are initialized at startup, which causes the annoying 
