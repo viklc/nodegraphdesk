@@ -1,6 +1,7 @@
 {
     "init_desktops_startup": true,
     "assign_hotkey": "M",
+    "clear_mapping_hotkey": "Ctrl+Shift+M",
     "arbitrary_nodegraph_change": false,
     "alias_mapping": true,
     "alias_map": {
