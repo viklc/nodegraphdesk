@@ -1,5 +1,6 @@
 {
     "init_desktops_startup": true,
+    "assign_hotkey": "M",
     "arbitrary_nodegraph_change": false,
     "alias_mapping": true,
     "alias_map": {
