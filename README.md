@@ -1,9 +1,9 @@
-# nodegraphdesk
-This houdini nodegraph extension allows to assign a nodegraph context to a specific desktop. It uses a 
-restrictive assignment approach to prevent misleading behavior, meaning that each desktop can only 
-be linked to one of its nodegraphs (pane) with a specific context. To take effect, at least two links 
-should be specified.
+Nodegraphdesk is an extension for Houdini's node editor that allows to assign a particular desktop 
+to a nodegraph context. It automatically switches between desktops when the user changes the path 
+or dives into contexts such as DOPs or LOPs.
 
+To prevent misleading behavior, Nodegraphdesk uses a restrictive assignment approach that allows 
+each desktop to be assigned to only one of its nodegraph panes with a given context.
 
 ## Install: 
 1. Download the folder nodegraphdesk and place it in a desired location. 
