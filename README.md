@@ -34,6 +34,6 @@ become quite confusing.
 assigning the root context obj as the other way around. You can also remove or set custom aliases as
 long as they are vailed node types.
 - **alias_map:** Alias dictionary map.
-- **nodegraphdesk_map:** The actual modegraph context desktop map.
+- **nodegraphdesk_map:** The actual nodegraph context desktop map.
 ---
 **Credits to ajz3d and TristanG, see** [**Is it possible to auto change Desktops depending on context?**](https://www.sidefx.com/forum/topic/97428/) 
