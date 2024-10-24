@@ -24,14 +24,14 @@ is not already assigned. If it is, you will be forced to reassign or remove the 
 
 ## Config
 You can find the configuration file under `$NODEGRAPHDESK/nodegraphdesk_config.json`.
-- **init_desktops_startup:** if true all desktops are initialized at startup.
+- **init_desktops_startup:** If true all desktops are initialized at startup.
 - **assign_hotkey:** Hotkey for the assignment.
 - **clear_mapping_hotkey:** Hotkey to clear all assignments.
 - **arbitrary_nodegraph_change:** Despite the restrictive assignment, this option allows changes
 to be made from any node editor of an assigned desktop. It is not recommended though, as it could
 become quite confusing.
 - **alias_mapping:** Allows the use of aliases, meaning that objnet behaves in the same way when
-assigning the root context obj as the other way around. You can also remove or set custom aliases as
+assigning the root context obj, and the other way around. You can also remove or set custom aliases as
 long as they are vailed node types.
 - **alias_map:** Alias dictionary map.
 - **nodegraphdesk_map:** The actual nodegraph context desktop map.
