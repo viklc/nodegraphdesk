@@ -3,8 +3,6 @@ Nodegraphdesk is an extension for Houdini's node editor that allows to assign a 
 to a nodegraph context. It automatically switches between desktops when the user changes the path 
 or dives into contexts such as DOPs or LOPs.
 
-https://github.com/user-attachments/assets/024b982a-79c6-441c-81f7-3f36dd5dc537
-
 ## Install
 1. Download the `nodegraphdesk` folder and place it in your desired location.
 2. Inside the folder, you’ll find a JSON file named `nodegraphdesk.json`. Open this file and set
@@ -23,6 +21,7 @@ tool, but you’ll need to set a hotkey for it first. You can find it under shel
 - When switching desktop for an another assignment, ensure that the nodegraph context you want to bind 
 is not already assigned. If it is, you will be forced to reassign or remove the existing assignment.
 - To clear all assignments, you can press Ctrl+Shift+M. There is also a shelf tool for this.
+https://github.com/user-attachments/assets/c6a84cec-3fc1-46ea-a5e8-138c2d70ac63
 
 ## Config
 You can find the configuration file under `$NODEGRAPHDESK/nodegraphdesk_config.json`.
