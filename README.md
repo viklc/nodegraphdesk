@@ -21,6 +21,7 @@ tool, but you’ll need to set a hotkey for it first. You can find it under shel
 - When switching desktop for an another assignment, ensure that the nodegraph context you want to bind 
 is not already assigned. If it is, you will be forced to reassign or remove the existing assignment.
 - To clear all assignments, you can press Ctrl+Shift+M. There is also a shelf tool for this.
+
 https://github.com/user-attachments/assets/c6a84cec-3fc1-46ea-a5e8-138c2d70ac63
 
 ## Config
