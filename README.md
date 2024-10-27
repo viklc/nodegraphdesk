@@ -40,4 +40,4 @@ long as they are vailed node types.
 ---
 Credits to ajz3d and TristanG, see [Is it possible to auto change Desktops depending on context?](https://www.sidefx.com/forum/topic/97428/)
 
-Houdini Theme used in preview, see Wooden Drone post here: [Made a modern/cleaner UI theme](https://www.sidefx.com/forum/topic/77366/)
+Theme used in preview, see Wooden Drone post here: [Made a modern/cleaner UI theme](https://www.sidefx.com/forum/topic/77366/)
