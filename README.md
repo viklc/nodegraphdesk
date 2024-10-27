@@ -14,10 +14,10 @@ Windows: `C:\Users\<username>\Documents\houdini20.5\packages`
 
 ## Usage
 - To assign a node editor context to a desktop, press `M` while under nodegraph.
-- To remove the assignment, simply press `M` again.
+- To remove the assignment simply press `M` again.
 - You can change the hotkey by editing the `"assign_hotkey"` property in the
 `$NODEGRAPHDESK/nodegraphdesk_config.json` file. Alternatively you can use the `Assign Context` shelf
-tool, but you’ll need to set a hotkey for it first. You can find it under shelves `Nodegrapthdesk`.
+tool, but you’ll need to set a hotkey for it first. You can find it under shelves `Nodegraphdesk`.
 - When switching desktop for an another assignment, ensure that the nodegraph context you want to bind 
 is not already assigned. If it is, you will be forced to reassign or remove the existing assignment.
 - To clear all assignments, you can press `Ctrl+Shift+M`. There is also a shelf tool for this.
@@ -38,4 +38,6 @@ long as they are vailed node types.
 - **alias_map:** Alias dictionary map.
 - **nodegraphdesk_map:** The actual nodegraph context desktop map.
 ---
-Credits to ajz3d and TristanG, see [Is it possible to auto change Desktops depending on context?](https://www.sidefx.com/forum/topic/97428/) 
+Credits to ajz3d and TristanG, see [Is it possible to auto change Desktops depending on context?](https://www.sidefx.com/forum/topic/97428/)
+
+Houdini Theme used in preview, see Wooden Drone post here: [Made a modern/cleaner UI theme](https://www.sidefx.com/forum/topic/77366/)
